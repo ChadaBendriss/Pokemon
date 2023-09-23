@@ -16,6 +16,7 @@ function Menu:init(def)
     self.panel = Panel(def.x, def.y, def.width, def.height)
     
     self.selection = Selection {
+        cursor = def.cursor,
         items = def.items,
         x = def.x,
         y = def.y,

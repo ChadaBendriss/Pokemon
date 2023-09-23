@@ -14,6 +14,7 @@
 Selection = Class{}
 
 function Selection:init(def)
+    self.cuursor = def.cursor
     self.items = def.items
     self.x = def.x
     self.y = def.y
