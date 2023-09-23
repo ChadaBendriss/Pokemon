@@ -12,6 +12,7 @@ function BattleMenuState:init(battleState)
     self.battleState = battleState
     
     self.battleMenu = Menu {
+        cursor=true,
         x = VIRTUAL_WIDTH - 64,
         y = VIRTUAL_HEIGHT - 64,
         width = 64,

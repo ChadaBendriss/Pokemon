@@ -37,6 +37,7 @@ require 'src/states/entity/EntityWalkState'
 require 'src/states/entity/PlayerIdleState'
 require 'src/states/entity/PlayerWalkState'
 
+require 'src/states/game/MenuState'
 require 'src/states/game/BattleState'
 require 'src/states/game/BattleMenuState'
 require 'src/states/game/BattleMessageState'
