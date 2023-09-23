@@ -26,6 +26,8 @@ function Selection:init(def)
     self.gapHeight = self.height / #self.items
 
     self.currentSelection = 1
+
+    self.cursorEnabled = def.cursorEnabled == nil and true or def.cursorEnabled
 end
 
 function Selection:update(dt)

@@ -210,14 +210,38 @@ function TakeTurnState:victory()
                         
                         gSounds['levelup']:play()
 
-                        -- set our exp to whatever the overlap is
-                        self.playerPokemon.currentExp = self.playerPokemon.currentExp - self.playerPokemon.expToLevel
+                        -- capture the pre-level up stats
+                        local preLevelUpStats = {
+                        HitPts = self.playerPokemon.HitPts,
+                        attack = self.playerPokemon.attack,
+                        defense = self.playerPokemon.defense,
+                        speed = self.playerPokemon.speed
+                        }
+
+                        -- perform the level up
                         self.playerPokemon:levelUp()
+
+                        -- calculate the increments in each stat
+                        local incHitPts = self.playerPokemon.HitPts - preLevelUpStats.HitPts
+                        local incAtk = self.playerPokemon.attack - preLevelUpStats.attack
+                        local incDef = self.playerPokemon.defense - preLevelUpStats.defense
+                        local incSpd = self.playerPokemon.speed - preLevelUpStats.speed
 
                         gStateStack:push(BattleMessageState('Congratulations! Level Up!',
                         function()
-                            self:fadeOutWhite()
+                            -- push the MenuState with the stat increments and the post-level up Pokémon instance
+                            gStateStack:push(MenuState(
+                                incHitPts,
+                                incAtk,
+                                incDef,
+                                incSpd,
+                                self.playerPokemon,
+                                function()
+                                    self:fadeOutWhite()
+                                end
+                            ))
                         end))
+
                     else
                         self:fadeOutWhite()
                     end
